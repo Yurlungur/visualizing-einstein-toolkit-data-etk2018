@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-27 16:13:23 (jonahm)>
+% Time-stamp: <2018-08-27 16:32:49 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -184,6 +184,53 @@ showstringspaces=false
         \includegraphics[width=5.5cm]{figures/psi4r-it-1024/psi4r-iteration-1024-volume-f-32}
         %\animategraphics[width=5.5cm,every=1,autoplay,loop]{6}{figures/psi4r-it-1024/psi4r-iteration-1024-volume-f-}{00}{32}
       \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualization Tools}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=0.9\columnwidth]{figures/python-logo-master-v3-TM}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item \textbf{\color{green}Pros:} Simple. Easy to explore/inspect data.
+      \item \textbf{\color{red}Cons:} Limited. 3D visualization hard.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \noindent\rule{\textwidth}{1pt}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=0.35\columnwidth]{figures/VisItLogoTrans}
+        \includegraphics[width=0.55\columnwidth]{figures/ParaView_Logo}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item \textbf{\color{green}Pros:} Very flexible. Contain graphical UI.
+      \item \textbf{\color{red}Cons:} Opaque. Hard to use in parallel.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \noindent\rule{\textwidth}{1pt}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=0.4\columnwidth]{figures/yt_logo}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item \textbf{\color{green}Pros:} Incorporates meaningful
+        physics and analysis. Hackable. Parallel.
+      \item \textbf{\color{red}Cons:} Less flexible. No interactive UI.
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
