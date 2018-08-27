@@ -1,3 +1,4 @@
+visualization-slides.pdf
 *.aux
 *.log
 *.nav
@@ -6,3 +7,5 @@
 *.toc
 auto
 *.snm
+*.fls
+*.fdb_latexmk
