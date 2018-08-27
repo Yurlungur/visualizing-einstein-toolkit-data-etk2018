@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-27 15:57:48 (jonahm)>
+% Time-stamp: <2018-08-27 16:13:23 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -169,8 +169,23 @@ showstringspaces=false
 \end{frame}
 
 \begin{frame}
-  \frametitle{Why Visualize?}
-  
+  \frametitle{Why Visualize in 3D?}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item Eye catching---great for journals, posters, talks, etc.
+      \item 3D structures not visible in slice plots can be visible in
+        3D volume renders
+      \item Useful for exploring and understanding your own data
+      \end{itemize}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=5.5cm]{figures/psi4r-it-1024/psi4r-iteration-1024-volume-f-32}
+        %\animategraphics[width=5.5cm,every=1,autoplay,loop]{6}{figures/psi4r-it-1024/psi4r-iteration-1024-volume-f-}{00}{32}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
