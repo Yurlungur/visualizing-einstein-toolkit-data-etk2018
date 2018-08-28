@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-27 16:32:49 (jonahm)>
+% Time-stamp: <2018-08-28 10:13:26 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -189,6 +189,61 @@ showstringspaces=false
 \end{frame}
 
 \begin{frame}
+  \frametitle{What You Will Learn}
+  \begin{enumerate}
+  \item (Very roughly) how does volume rendering work?
+  \item How to put your simulation data into these tools
+    \begin{itemize}
+    \item Your code has one representation of the physics, the data
+      file has another, the visualization tool yet another.
+    \item Mapping these representations into each other can be hard.
+    \item We'll do it for:
+      \begin{itemize}
+      \item  Einstein Toolkit data
+      \item  Arbitrary simulation data
+      \end{itemize}
+    \end{itemize}
+  \item Some tips and tricks
+    \begin{itemize}
+    \item Visualization best practices
+    \item Idiosyncracies of each tool
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Volume Rendering and Ray Tracing}
+  \resizebox{12cm}{!}{
+    \begin{tikzpicture}
+      \node[inner sep=0pt] at (0,0) {
+        \includegraphics[width=4cm,height=4cm,clip,trim={1cm 1cm 1cm 1cm}]{figures/blob-rand-ylm}
+      };
+      % plane
+      \filldraw[draw=black,thick,fill=red!20,opacity=0.75]
+      (-4.5,-2,-2) -- (-4.5,-2,2)
+      -- (-4.5,2,2) -- (-4.5,2,-2)
+      -- cycle;
+      \draw[black] (-4.5,0.6) ellipse(0.35 and 0.75);
+      \draw[black] (-4.5,-0.6) ellipse(0.35 and 0.75);
+      % source
+      %\shadedraw[ball color=blue] (5.,0) circle (1.2);
+      % right
+      \draw[ultra thick,<-] (2,1) -- (4,1);
+      \draw[ultra thick,<-] (2,0) -- (4,0);
+      \draw[ultra thick,<-] (2,-1) -- (4,-1);
+      % left
+      \draw[ultra thick,->] (-2,1) -- (-4,1);
+      \draw[ultra thick,->] (-2,0) -- (-4,0);
+      \draw[ultra thick,->] (-2,-1) -- (-4,-1);
+      % labels
+      \draw (-4.5,-3) node[below] {Screen/Eyes};
+      \draw (0,-3) node[below] {Data/Transfer Function};
+      \draw (4,-3) node[below] {Source};
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
   \frametitle{Visualization Tools}
   \begin{columns}
     \begin{column}{6cm}
@@ -228,7 +283,7 @@ showstringspaces=false
     \begin{column}{6cm}
       \begin{itemize}
       \item \textbf{\color{green}Pros:} Incorporates meaningful
-        physics and analysis. Hackable. Parallel.
+        physics and analysis. Hack able. Parallel.
       \item \textbf{\color{red}Cons:} Less flexible. No interactive UI.
       \end{itemize}
     \end{column}
