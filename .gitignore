@@ -9,3 +9,4 @@ auto
 *.snm
 *.fls
 *.fdb_latexmk
+*.ipynb_checkpoints
