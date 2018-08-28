@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-28 10:13:26 (jonahm)>
+% Time-stamp: <2018-08-28 10:27:19 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -244,6 +244,35 @@ showstringspaces=false
 \end{frame}
 
 \begin{frame}
+  \frametitle{What do we care about in a simulation?}
+  \begin{tikzpicture}
+    \draw[ultra thick,->] (7,3) -- (4,1.5);
+    \node[inner sep=0pt] at (2,2) {\includegraphics[width=4cm,trim={0cm 0cm 0cm 0cm},clip]{figures/surface-scatter-small}};
+    \node[inner sep=0pt] at (9,3.5) {\includegraphics[width=8cm,trim={0cm 0cm 0cm 0cm},clip]{figures/surface-scatter}};
+    \draw[ultra thick,->] (5,7) -- (7,4);
+    \node[inner sep=0pt] at (4,6) {\includegraphics[width=8cm,trim={0.5cm 0cm 0cm 1.75cm},clip]{figures/surface-smooth}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What do we care about in a simulation?}
+  \begin{center}
+    \includegraphics[width=12cm]{figures/wavey}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What do we care about in a simulation?}
+    \begin{center}
+    \includegraphics[width=5.5cm]{figures/fourpatches.png}
+    \includegraphics[width=5.5cm]{figures/sixpatches.png}
+  \end{center}
+  Schnetter \textit{et al} 2006 Class. \textit{Quantum Grav.} \textbf{23} S553\\
+  Pollney \textit{et al} 2011 \textit{Phys. Rev. D} \textbf{83} 044045
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Visualization Tools}
   \begin{columns}
     \begin{column}{6cm}
@@ -288,6 +317,11 @@ showstringspaces=false
       \end{itemize}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inspecting Your Data in Python}
+  
 \end{frame}
 
 \end{document}
