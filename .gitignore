@@ -10,3 +10,4 @@ auto
 *.fls
 *.fdb_latexmk
 *.ipynb_checkpoints
+*.vrb

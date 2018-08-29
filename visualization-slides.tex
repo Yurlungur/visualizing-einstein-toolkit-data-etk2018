@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-28 10:27:19 (jonahm)>
+% Time-stamp: <2018-08-29 10:52:47 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -319,9 +319,53 @@ showstringspaces=false
   \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Exercise: Inspecting Arbitrary Data in Python}
+\begin{python}
+import h5py
+import numpy as np
+data = {}
+with h5py.File('harmdisk2d/data.h5','r') as f:
+    for k,v in f.items():
+        data[k] = v.value
+\end{python}
+  \begin{center}
+    \includegraphics[height=4cm]{figures/harmdisk2d}
+  \end{center}
+\end{frame}
+
 \begin{frame}
-  \frametitle{Inspecting Your Data in Python}
-  
+  \frametitle{Important Carpet AMR Concepts}
+    \resizebox{12cm}{!}{
+    \begin{tikzpicture}
+      \filldraw[blue] (0,0) rectangle (4,4);
+      \draw (0,0) rectangle (2,2);
+      \draw (2,2) rectangle (4,4);
+      \draw (0,2) rectangle (2,4);
+      \draw (2,0) rectangle (4,2);
+      \draw[ultra thick,black,|-|] (0,-0.25) -- (4,-0.25);
+      \draw (2,-0.25) node[below] {\color{blue}domain};
+      \filldraw[red,opacity=0.8] (2.2,2.2) rectangle (3.2,3.2);
+      \draw[ultra thick,red,<-] (3.3,3.3)
+      -- (4.25,4.) -- (4.5,4) node[right] {\color{red}refined grid/patch};
+      \draw (2.2,2.2) rectangle ++(0.5,0.5);%(2.5,2.5);
+      \draw (2.7,2.7) rectangle ++(0.5,0.5);%(3,3);
+      \draw (2.2,2.7) rectangle ++(0.5,0.5);%(2.5,3);
+      \draw (2.7,2.2) rectangle ++(0.5,0.5);%(3,2.5);
+
+      \coordinate (cmp) at (6,1);
+      \coordinate (knk) at (5,1);
+
+      \draw (cmp) node[right] {\color{black}Components};
+      \draw[ultra thick,black,<-] (3.05,2.45) -- (4.3,2.45) -- (knk) -- (cmp);
+      \draw[ultra thick,black,<-] (3,1) -- (knk);
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exercise: Inspecting Carpet AMR Data in Python}
+
 \end{frame}
 
 \end{document}
