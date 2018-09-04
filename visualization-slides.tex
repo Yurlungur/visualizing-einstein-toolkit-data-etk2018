@@ -243,6 +243,8 @@ showstringspaces=false
   }
 \end{frame}
 
+\transitionslide{Mapping Your Simulation Data Into a Visualization Tool}
+
 \begin{frame}
   \frametitle{What do we care about in a simulation?}
   \begin{tikzpicture}
@@ -291,6 +293,21 @@ showstringspaces=false
   \begin{columns}
     \begin{column}{6cm}
       \begin{center}
+        \includegraphics[width=0.4\columnwidth]{figures/yt_logo}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item \textbf{\color{green}Pros:} Incorporates meaningful
+        physics and analysis. Hackable. Parallel.
+      \item \textbf{\color{red}Cons:} Less flexible. No interactive UI.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \noindent\rule{\textwidth}{1pt}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
         \includegraphics[width=0.35\columnwidth]{figures/VisItLogoTrans}
         \includegraphics[width=0.55\columnwidth]{figures/ParaView_Logo}
       \end{center}
@@ -302,22 +319,9 @@ showstringspaces=false
       \end{itemize}
     \end{column}
   \end{columns}
-  \noindent\rule{\textwidth}{1pt}
-  \begin{columns}
-    \begin{column}{6cm}
-      \begin{center}
-        \includegraphics[width=0.4\columnwidth]{figures/yt_logo}
-      \end{center}
-    \end{column}
-    \begin{column}{6cm}
-      \begin{itemize}
-      \item \textbf{\color{green}Pros:} Incorporates meaningful
-        physics and analysis. Hack able. Parallel.
-      \item \textbf{\color{red}Cons:} Less flexible. No interactive UI.
-      \end{itemize}
-    \end{column}
-  \end{columns}
 \end{frame}
+
+\transitionslide{Pure Python}
 
 \begin{frame}[fragile]
   \frametitle{Exercise: Inspecting Arbitrary Data in Python}
@@ -336,7 +340,44 @@ with h5py.File('harmdisk2d/data.h5','r') as f:
 
 \begin{frame}[fragile]
   \frametitle{Exercise: Inspecting Carpet AMR Data in Python}
+  \begin{python}
+lapse_filenames = sorted(glob('admbase-lapse.*.h5'))
+lapse = {}
+for filename in lapse_filenames:
+    with h5py.File(filename,'r') as f:
+        for k,v in f.items():
+            try:
+                lapse[k] = v.value
+            except:
+                pass
+  \end{python}
+  \begin{center}
+    \includegraphics[height=4cm]{figures/lapse2d}
+  \end{center}
+\end{frame}
 
+\begin{frame}
+  \frametitle{Important Finite Volume Concepts}
+  \resizebox{12cm}{!}{
+    \begin{tikzpicture}
+      \filldraw[blue] (0,0) rectangle ++(4,4);
+      \foreach \x in {0,1,2,3}
+      {
+        \foreach \y in {0,1,2,3}
+        {
+          \draw(\x,\y) rectangle ++(1,1);
+        }
+      }
+
+      \draw[ultra thick,red,<-] (3.5,3.5) -- (4.5,3.5) -- (5,3) --
+      (5.5,3) node[right] {cells};
+      \draw[ultra thick,red,<-] (3.5,2.5) -- (4.5,2.5) -- (5,3);
+
+      \draw[ultra thick,black,<-] (4,2) -- (4.5,2) -- (5,1.5) --
+      (5.5,1.5) node[right] {faces};
+      \draw[ultra thick,black,<-] (4,1) -- (4.5,1) -- (5,1.5);
+    \end{tikzpicture}
+  }
 \end{frame}
 
 \begin{frame}
@@ -367,5 +408,81 @@ with h5py.File('harmdisk2d/data.h5','r') as f:
     \end{tikzpicture}
   }
 \end{frame}
+
+\transitionslide{yt}
+
+\begin{frame}
+  \frametitle{(Optional) Exercise: Installing yt}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item  pip install yt --user
+      \end{itemize}
+    \end{column}
+    \begin{column}{6cm}
+      \includegraphics[width=6cm]{figures/yt-rand}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exercise: Loading Curvilinear Data into yt}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item \textbf{\color{blue}Advantages}
+        \begin{itemize}
+        \item Easy plotting and data analysis
+        \item More advanced than pure python
+        \end{itemize}
+      \item \textbf{\color{red}Limitations}
+        \begin{itemize}
+        \item No volume rendering or projection plots available
+        \item Ad hoc---parallelism unlikely to work
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[height=7.9cm]{figures/harmdisk-xz-slice}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Help Wanted}
+  \begin{itemize}
+  \item Carpet AMR and yt are not easy to integrate
+  \item Ideally a frontend for yt can be written to integrate it with Carpet
+  \end{itemize}
+\end{frame}
+
+\transitionslide{Visit}
+% \begin{frame}
+%   \frametitle{Exercise: Carpet AMR Data in yt}
+%   \begin{columns}
+%     \begin{column}{6cm}
+%       \begin{itemize}
+%       \item \textbf{\color{blue}Advantages}
+%         \begin{itemize}
+%         \item Mixes plotting and data analysis
+%         \item More advanced than pure python
+%         \item Volume rendering available
+%         \item Hackable
+%         \end{itemize}
+%       \item \textbf{\color{red}Limitations}
+%         \begin{itemize}
+%         \item Ad hoc---parallelism unlikely to work
+%         \item A bit more work than visit
+%         \item Only works for Cartesian grids (no Llama) and for
+%           cell-centered refinement
+%         \end{itemize}
+%       \end{itemize}
+%     \end{column}
+%     \begin{column}{6cm}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
 
 \end{document}
