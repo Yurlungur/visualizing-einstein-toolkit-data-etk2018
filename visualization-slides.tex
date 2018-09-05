@@ -458,7 +458,6 @@ for filename in lapse_filenames:
   \end{itemize}
 \end{frame}
 
-\transitionslide{Visit}
 % \begin{frame}
 %   \frametitle{Exercise: Carpet AMR Data in yt}
 %   \begin{columns}
@@ -484,5 +483,123 @@ for filename in lapse_filenames:
 %     \end{column}
 %   \end{columns}
 % \end{frame}
+
+\transitionslide{Visit}
+
+\begin{frame}
+  \frametitle{Visualizing ET Data in Visit: Opening Visit}
+  \begin{center}
+    \includegraphics[height=8cm]{figures/visit/visit-blank}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET Data in Visit: Loading Data}
+  \begin{center}
+    \includegraphics[height=8cm]{figures/visit/visit-open-rho}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET Data in Visit: The Contour Plot}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[height=8cm]{figures/visit/visit-contour-start}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=6cm]{figures/visit/contour-1-star-no-symmetry}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: Accounting for Symmetry}
+  \begin{center}
+    \includegraphics[height=8cm]{figures/visit/symmetry-180-degree-star}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: Changing the Colormap}
+    \begin{center}
+    \includegraphics[height=8cm]{figures/visit/contour-colors}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Aside: The Rainbow Colormap is Bad!}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item Plots should convert to grayscale easily
+      \item Plots should be colorblind friendly
+      \item The human mind/eye doesn't perceive differences in color
+        uniformly
+      \item The canonical ``rainbow'' colormap is bad about all of this
+      \item A good choice are ``perceptually uniform'' colormaps,
+        which solve many of these problems
+      \item For more info, see \url{https://matplotlib.org/users/colormaps.html}
+      \end{itemize}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=6cm]{figures/colormaps}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: The Two Stars}
+  \begin{center}
+    \includegraphics[width=12cm]{figures/visit/stars-contours}
+  \end{center}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Visualizing ET in Visit: The Full Symmetry}
+%   \begin{center}
+%     \includegraphics[height=8cm]{figures/visit/symmetry-star-and-midplane}
+%   \end{center}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: The Volume Render}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[height=8cm]{figures/visit/visit-volume-render-start}
+      \end{center}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[height=8cm]{figures/visit/symmetry-star-and-midplane}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: Ray Tracing}
+  \begin{center}
+    \includegraphics[height=8cm]{figures/visit/ray-trace-choice}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Visualizing ET in Visit: Ray Tracing}
+  \begin{center}
+    \includegraphics[width=12cm]{figures/visit/stars-volume-render}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using Arbitrary Data With Visit: XDMF}
+  
+\end{frame}
 
 \end{document}
