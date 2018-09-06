@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-08-29 13:45:51 (jonahm)>
+% Time-stamp: <2018-09-06 11:35:09 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -128,10 +128,30 @@ frame=tb,
 showstringspaces=false        
 }}
 
+\newcommand\xmlstyle{\lstset{
+language=XML,
+basicstyle=\tiny\ttm,
+otherkeywords={self},
+keywordstyle=\ttb\color{deepblue},
+emph={__init__},           
+emphstyle=\ttb\color{deepred},
+commentstyle=\ttfamily\color{deepred},
+stringstyle=\color{deepgreen},
+frame=tb,                     
+showstringspaces=false        
+}}
+
 % Python environment
 \lstnewenvironment{python}[1][]
 {
 \pythonstyle
+\lstset{#1}
+}
+{}
+
+\lstnewenvironment{xml}[1][]
+{
+\xmlstyle
 \lstset{#1}
 }
 {}
@@ -451,6 +471,25 @@ for filename in lapse_filenames:
 \end{frame}
 
 \begin{frame}
+  \frametitle{yt's Best Feature: The Community}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item Website: \url{yt-project.org}
+      \item IRC: \url{yt-project.org/irc.html}
+      \item Slack
+      \item Mailing list: \href{mailto:yt-users@python.org}{yt-users@python.org}
+      \end{itemize}      
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=6cm]{figures/yt-page}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
   \frametitle{Help Wanted}
   \begin{itemize}
   \item Carpet AMR and yt are not easy to integrate
@@ -599,7 +638,66 @@ for filename in lapse_filenames:
 
 \begin{frame}
   \frametitle{Using Arbitrary Data With Visit: XDMF}
-  
+      \begin{itemize}
+      \item Suppose you generated data with a code and you want to read it in to visit
+      \item You can create a \textit{XDMF} file to tell Visit how to read your data
+      \item \textit{XDMF} is XML, which is human readable/writable.
+      \item Resources:
+        \begin{itemize}
+        \item \url{http://www.xdmf.org/index.php/XDMF_Model_and_Format}
+        \item \url{https://www.visitusers.org/index.php?title=Using_XDMF_to_read_HDF5}
+        \end{itemize}
+      \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Using Arbitrary Data With Visit: XDMF}
+\begin{xml}
+<Domain>
+   <Grid Name="mesh1" GridType="Uniform">
+     <Topology TopologyType="2DSMesh"
+      NumberOfElements="21 31"/>
+     <Geometry GeometryType="X_Y">
+       <DataItem Dimensions="21 31" NumberType="Float"
+        Format="HDF">
+        xdmf2d.h5:/X
+       </DataItem>
+       <DataItem Dimensions="21 31" NumberType="Float"
+        Format="HDF">
+        xdmf2d.h5:/Y
+       </DataItem>
+     </Geometry>
+     <Attribute Name="Pressure"
+       AttributeType="Scalar" Center="Cell">
+       <DataItem Dimensions="20 30" Format="HDF">
+        xdmf2d.h5:/Pressure
+       </DataItem>
+     </Attribute>
+   </Grid>
+ </Domain>
+\end{xml}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exercise: Read in Simulation Data With XDMF}
+  \begin{columns}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item Write an XDMF file to read the data in {\tt
+          exercises/harmdisk3d} and visualize it in Visit.
+      \item Resources:
+        \begin{itemize}
+        \item \url{http://www.xdmf.org/index.php/XDMF_Model_and_Format}
+        \item \url{https://www.visitusers.org/index.php?title=Using_XDMF_to_read_HDF5}
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{6cm}
+      \begin{center}
+        \includegraphics[width=6cm]{figures/disk_image_no_text}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
