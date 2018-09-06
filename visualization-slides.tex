@@ -1,6 +1,6 @@
 \documentclass[]{beamer}
 \mode<presentation>
-% Time-stamp: <2018-09-06 11:35:09 (jonahm)>
+% Time-stamp: <2018-09-06 17:43:29 (jonahm)>
 
 % beamer stuff
 % Gives us the bottom line with all the goodies
@@ -293,6 +293,58 @@ showstringspaces=false
   Pollney \textit{et al} 2011 \textit{Phys. Rev. D} \textbf{83} 044045
 \end{frame}
 
+\begin{frame}
+  \frametitle{Important Finite Volume Concepts}
+  \resizebox{12cm}{!}{
+    \begin{tikzpicture}
+      \filldraw[blue] (0,0) rectangle ++(4,4);
+      \foreach \x in {0,1,2,3}
+      {
+        \foreach \y in {0,1,2,3}
+        {
+          \draw(\x,\y) rectangle ++(1,1);
+        }
+      }
+
+      \draw[ultra thick,red,<-] (3.5,3.5) -- (4.5,3.5) -- (5,3) --
+      (5.5,3) node[right] {cells};
+      \draw[ultra thick,red,<-] (3.5,2.5) -- (4.5,2.5) -- (5,3);
+
+      \draw[ultra thick,black,<-] (4,2) -- (4.5,2) -- (5,1.5) --
+      (5.5,1.5) node[right] {faces};
+      \draw[ultra thick,black,<-] (4,1) -- (4.5,1) -- (5,1.5);
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Important Carpet AMR Concepts}
+    \resizebox{12cm}{!}{
+    \begin{tikzpicture}
+      \filldraw[blue] (0,0) rectangle (4,4);
+      \draw (0,0) rectangle (2,2);
+      \draw (2,2) rectangle (4,4);
+      \draw (0,2) rectangle (2,4);
+      \draw (2,0) rectangle (4,2);
+      \draw[ultra thick,black,|-|] (0,-0.25) -- (4,-0.25);
+      \draw (2,-0.25) node[below] {\color{blue}domain};
+      \filldraw[red,opacity=0.8] (2.2,2.2) rectangle (3.2,3.2);
+      \draw[ultra thick,red,<-] (3.3,3.3)
+      -- (4.25,4.) -- (4.5,4) node[right] {\color{red}refined grid/patch};
+      \draw (2.2,2.2) rectangle ++(0.5,0.5);%(2.5,2.5);
+      \draw (2.7,2.7) rectangle ++(0.5,0.5);%(3,3);
+      \draw (2.2,2.7) rectangle ++(0.5,0.5);%(2.5,3);
+      \draw (2.7,2.2) rectangle ++(0.5,0.5);%(3,2.5);
+
+      \coordinate (cmp) at (6,1);
+      \coordinate (knk) at (5,1);
+
+      \draw (cmp) node[right] {\color{black}Components};
+      \draw[ultra thick,black,<-] (3.05,2.45) -- (4.3,2.45) -- (knk) -- (cmp);
+      \draw[ultra thick,black,<-] (3,1) -- (knk);
+    \end{tikzpicture}
+  }
+\end{frame}
 
 \begin{frame}
   \frametitle{Visualization Tools}
@@ -374,59 +426,6 @@ for filename in lapse_filenames:
   \begin{center}
     \includegraphics[height=4cm]{figures/lapse2d}
   \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Important Finite Volume Concepts}
-  \resizebox{12cm}{!}{
-    \begin{tikzpicture}
-      \filldraw[blue] (0,0) rectangle ++(4,4);
-      \foreach \x in {0,1,2,3}
-      {
-        \foreach \y in {0,1,2,3}
-        {
-          \draw(\x,\y) rectangle ++(1,1);
-        }
-      }
-
-      \draw[ultra thick,red,<-] (3.5,3.5) -- (4.5,3.5) -- (5,3) --
-      (5.5,3) node[right] {cells};
-      \draw[ultra thick,red,<-] (3.5,2.5) -- (4.5,2.5) -- (5,3);
-
-      \draw[ultra thick,black,<-] (4,2) -- (4.5,2) -- (5,1.5) --
-      (5.5,1.5) node[right] {faces};
-      \draw[ultra thick,black,<-] (4,1) -- (4.5,1) -- (5,1.5);
-    \end{tikzpicture}
-  }
-\end{frame}
-
-\begin{frame}
-  \frametitle{Important Carpet AMR Concepts}
-    \resizebox{12cm}{!}{
-    \begin{tikzpicture}
-      \filldraw[blue] (0,0) rectangle (4,4);
-      \draw (0,0) rectangle (2,2);
-      \draw (2,2) rectangle (4,4);
-      \draw (0,2) rectangle (2,4);
-      \draw (2,0) rectangle (4,2);
-      \draw[ultra thick,black,|-|] (0,-0.25) -- (4,-0.25);
-      \draw (2,-0.25) node[below] {\color{blue}domain};
-      \filldraw[red,opacity=0.8] (2.2,2.2) rectangle (3.2,3.2);
-      \draw[ultra thick,red,<-] (3.3,3.3)
-      -- (4.25,4.) -- (4.5,4) node[right] {\color{red}refined grid/patch};
-      \draw (2.2,2.2) rectangle ++(0.5,0.5);%(2.5,2.5);
-      \draw (2.7,2.7) rectangle ++(0.5,0.5);%(3,3);
-      \draw (2.2,2.7) rectangle ++(0.5,0.5);%(2.5,3);
-      \draw (2.7,2.2) rectangle ++(0.5,0.5);%(3,2.5);
-
-      \coordinate (cmp) at (6,1);
-      \coordinate (knk) at (5,1);
-
-      \draw (cmp) node[right] {\color{black}Components};
-      \draw[ultra thick,black,<-] (3.05,2.45) -- (4.3,2.45) -- (knk) -- (cmp);
-      \draw[ultra thick,black,<-] (3,1) -- (knk);
-    \end{tikzpicture}
-  }
 \end{frame}
 
 \transitionslide{yt}
@@ -698,6 +697,29 @@ for filename in lapse_filenames:
       \end{center}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{You Have (Hopefully) Learned}
+  \begin{enumerate}
+  \item (Very roughly) how does volume rendering work?
+  \item How to put your simulation data into these tools
+    \begin{itemize}
+    \item Your code has one representation of the physics, the data
+      file has another, the visualization tool yet another.
+    \item Mapping these representations into each other can be hard.
+    \item We'll do it for:
+      \begin{itemize}
+      \item  Einstein Toolkit data
+      \item  Arbitrary simulation data
+      \end{itemize}
+    \end{itemize}
+  \item Some tips and tricks
+    \begin{itemize}
+    \item Visualization best practices
+    \item Idiosyncracies of each tool
+    \end{itemize}
+  \end{enumerate}
 \end{frame}
 
 \end{document}
